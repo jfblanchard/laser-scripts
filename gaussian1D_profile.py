@@ -9,15 +9,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def gaussian_1D_profile(X, center, sigma, amplitude):
+def gaussian_1D_profile(x_min, x_max, x_step, center, sigma, amplitude):
     """Function to create a 1D Gaussian distribution. 
     
     Parameters
     ----------
     
-    X: ndarray
-        The points over which to compute the Gaussian
-    center_x: float
+    x_min, x_max, x_step: float, float, float
+        Creates a sequence (1D ndarray) of points over which to compute the Gaussian
+    center: float
         The center point of the gaussian profile
     sigma: float
         1/e-squared width of beam
@@ -27,14 +27,16 @@ def gaussian_1D_profile(X, center, sigma, amplitude):
     Returns
     -------
     
-    y: ndarray
+    x,y: ndarray
         the gaussian profile amplitude values
         
     """
-
+    
+    x = np.arange(x_min, x_max,x_step)  #create spatial array
     d = 2*float(sigma)
-    y = amplitude*np.e**(-2*np.power((X-center)/d, 2))
-    return y
+    y = amplitude*np.e**(-2*np.power((x-center)/d, 2))
+    
+    return x,y
 
     # todo: learn how to do proper unit testing...heres some manual checks
     # what if center > max(X)?  still works, just get the tail end
@@ -44,7 +46,7 @@ def gaussian_1D_profile(X, center, sigma, amplitude):
     # what if the ndarray goes negative?  Is ok.
     # What if the array is empty or null? should catch an error.
 
-def plot_1d_gaussian(x,y):
+def plot_1d_gaussian(x,y,hold=True):
     """Plot the gaussian profile.
     
     Parameters
@@ -56,7 +58,7 @@ def plot_1d_gaussian(x,y):
         Y axis values 
         
     """   
-    
+    plt.hold = hold
     plt.plot(x,y)
     plt.xlabel('X axis')
     plt.ylabel('Amplitude')
@@ -65,9 +67,8 @@ def plot_1d_gaussian(x,y):
     
 
 if __name__ == '__main__':
-
-    x = np.arange(-50,50,.2)         #create spatial array
-    y = gaussian_1D_profile(x, 0, 10, 1)
-    plot_1d_gaussian(x,y)
+    
+    x,y = gaussian_1D_profile(-50,50,.2, 0, 10, 1)
+    plot_1d_gaussian(x,y,True)
 
 
