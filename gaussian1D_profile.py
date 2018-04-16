@@ -46,7 +46,7 @@ def gaussian_1D_profile(x_min, x_max, x_step, center, sigma, amplitude):
     # what if the ndarray goes negative?  Is ok.
     # What if the array is empty or null? should catch an error.
 
-def plot_1d_gaussian(x,y,hold=True):
+def plot_1d_gaussian(x,y,hold=True):  
     """Plot the gaussian profile.
     
     Parameters
@@ -64,6 +64,8 @@ def plot_1d_gaussian(x,y,hold=True):
     plt.ylabel('Amplitude')
     plt.title('Gaussian 1D Profile')
     plt.show() 
+    
+    # todo: check if the hold true works or not
     
 
 if __name__ == '__main__':
