@@ -80,8 +80,8 @@ def plot_2d_gaussian(Z):
     """   
     
     plt.figure()
-    plt.axis('off')
-    plt.imshow(Z)
+    #plt.axis('off')
+    plt.imshow(Z,extent=(-50,50,-50,50))
     plt.contour(Z)
     plt.title('2D Gaussian Profile')
     plt.show()
