@@ -1,14 +1,22 @@
 <h3>Usage of gaussian-beam package <//h3>
 
-<h4>gaussian1D_profile.py</h4>
+<h4>Gaussian 1D Profile</h4>
 
-Usage: 
+Usage (running in jupyter console): 
 ```python
-import gaussian1D_profile as gp
-x,y = gp.gaussian_1D_profile(-50,50,.2, 0, 10, 1)
-gp.plot_1d_gaussian(x,y,True)
+%run gaussian1D_profile.py
 ```
-
 will produce the following plot:
 
 ![1D Gaussian Image](/images/gaussian1D_image.png)
+
+<h4>Gaussian 2D Profile</h4>
+
+Usage (running in jupyter console): 
+```python
+%run gaussian2D_profile.py
+```
+will produce the following plots:
+
+![2D Gaussian lines](/images/gaussian2D_lines.png)
+![2D Gaussian profile](/images/gaussian2D_image.png)
