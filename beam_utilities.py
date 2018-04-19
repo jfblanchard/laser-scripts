@@ -67,3 +67,31 @@ def bpp_wl_m2(wavelength, msquared=1.0):
     bpp = (wavelength*mm * msquared*mm)/np.pi
     return bpp
 
+
+def beam_half_divergence(wavelength,waist, msquared=1.0):
+    """Compute the half angle divergence from wavelength, waist radius, and 
+    m-squared value. 
+    
+    Parameters
+    ----------
+    wavelength : float
+        The wavelength in meters
+    waist : float
+        The waist radius in meters     
+    msquared : float, optional
+        The msquared value of the beam
+        
+    Returns
+    -------
+    divergence : float
+        The half-angle divergence in rad
+    """
+    theta = msquared*wavelength/(np.pi * waist)
+    return theta
+
+
+if __name__ == '__main__':
+    #do some test cases
+    
+    
+
