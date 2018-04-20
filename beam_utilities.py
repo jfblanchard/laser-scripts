@@ -3,6 +3,8 @@
 
 Functions for computing commonly used laser beam parameters.
 
+Todo: Maybe merge the bpp functions for radius and diameter.
+
 """
 
 import numpy as np
@@ -18,15 +20,11 @@ nm = 1e9
 pm = 1e12
 
 
-def bpp(waist_rad,half_divergence):
+def bpp_raduis_halfdiv(waist_rad,half_divergence):
     """The Beam Parameter Product (bpp) is defined as the product of the beam 
-    waist radius and the half angle divergence.  The BPP for an ideal 
-    (diffraction-limited) gaussian beam is the minimum value possible, which is 
-    defined as the center wavelength divided by Pi.  This function computes the
-    bpp from wavelength and m-squared value. This function uses the most beam 
-    radius and half-divergence, which is the most common, but bpp can also be 
-    computed from beam diameter and full angle divergence (see below).  The
-    units are generally mm-mrad. 
+    waist size and the far field divergence. This function uses the beam radius
+    and half-divergence, but bpp can also be computed from beam diameter and 
+    full angle divergence (see below).  The units are generally mm-mrad. 
     
     Parameters
     ----------
@@ -43,12 +41,35 @@ def bpp(waist_rad,half_divergence):
     
     bpp = waist_rad*mm * half_divergence*mm
     return bpp
+
     
+def bpp_diam_fulldiv(waist_diam,full_divergence):
+    """The Beam Parameter Product (bpp) is defined as the product of the beam 
+    waist size and the far field divergence.  This function uses the beam 
+    diameter and full angle divergence.  The units are generally mm-mrad. 
+    
+    Parameters
+    ----------
+    waist_rad : float
+        The waist radius of the beam in meters.
+    half_divergence : float
+        The half divergence of the beam in radians.
+        
+    Returns
+    -------
+    BPP : float
+        The Beam parameter product in mm-mrad
+    """
+    
+    bpp = 4* waist_diam*mm * full_divergence*mm
+    return bpp
 
 
 def bpp_wl_m2(wavelength, msquared=1.0):
-    """This function computes the beam parameter product of a gaussian beam 
-    from its center wavelength and m-squared value. 
+    """This function computes the beam parameter product of a gaussian beam, 
+    which is defined as the center wavelength divided by Pi.  The bpp of a beam 
+    with an M-squared > 1 is just the bpp value multiplied by the m-squared
+    value.
     
     
     Parameters
