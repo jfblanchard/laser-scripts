@@ -20,7 +20,7 @@ nm = 1e9
 pm = 1e12
 
 
-def bpp_raduis_halfdiv(waist_rad,half_divergence):
+def bpp_raduis_halfdiv(waist_rad, half_divergence):
     """The Beam Parameter Product (bpp) is defined as the product of the beam 
     waist size and the far field divergence. This function uses the beam radius
     and half-divergence, but bpp can also be computed from beam diameter and 
@@ -35,7 +35,7 @@ def bpp_raduis_halfdiv(waist_rad,half_divergence):
         
     Returns
     -------
-    BPP : float
+    bpp : float
         The Beam parameter product in mm-mrad
     """
     
@@ -43,21 +43,21 @@ def bpp_raduis_halfdiv(waist_rad,half_divergence):
     return bpp
 
     
-def bpp_diam_fulldiv(waist_diam,full_divergence):
+def bpp_diam_fulldiv(waist_diam, full_divergence):
     """The Beam Parameter Product (bpp) is defined as the product of the beam 
     waist size and the far field divergence.  This function uses the beam 
     diameter and full angle divergence.  The units are generally mm-mrad. 
     
     Parameters
     ----------
-    waist_rad : float
-        The waist radius of the beam in meters.
-    half_divergence : float
+    waist_diam : float
+        The waist diameter of the beam in meters.
+    full_divergence : float
         The half divergence of the beam in radians.
         
     Returns
     -------
-    BPP : float
+    bpp : float
         The Beam parameter product in mm-mrad
     """
     
@@ -110,6 +110,48 @@ def beam_half_divergence(wavelength,waist, msquared=1.0):
     theta = msquared*wavelength/(np.pi * waist)
     return theta
 
+
+def beam_waist(wavelength,divergence, msquared=1.0):
+    """Compute the beam waist from wavelength, divergence, and 
+    m-squared value. 
+    
+    Parameters
+    ----------
+    wavelength : float
+        The wavelength in meters
+    divergence : float
+        The half divergenence in rad       
+    msquared : float, optional
+        The msquared value of the beam
+        
+    Returns
+    -------
+    waist : float
+        The beam waist radius in meters
+    """
+    
+    waist = msquared*wavelength/(np.pi * divergence)
+    return waist
+
+    def rayleigh_range(wavelength,waist):
+    """Compute the rayleigh range of a gaussian beam in free space.  This is 
+    the distance where the cross section doubles, and radius increases sqrt(2).
+    
+    Parameters
+    ----------
+    wavelength : float
+        The wavelength in meters
+    waist : float
+        The waist radius in meters    
+        
+    Returns
+    -------
+    zR : float
+        The rayleigh range in meters
+    """
+    
+    zR = (np.pi*waist**2)/wavelength
+    return zR
 
 if __name__ == '__main__':
     #do some test cases
