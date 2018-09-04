@@ -169,24 +169,26 @@ def beam_waist(wavelength,divergence, msquared=1.0):
     waist = msquared*wavelength/(np.pi * divergence)
     return waist
 
-    def rayleigh_range(wavelength,waist):
-    """Compute the rayleigh range of a gaussian beam in free space.  This is 
-    the distance where the cross section doubles, and radius increases sqrt(2).
-    
+def rayleigh_range(wavelength,waist):
+        
+    """ Compute the rayleigh range of a gaussian beam in free space.  This is 
+        the distance where the cross section doubles, and radius increases sqrt(2).
+        
     Parameters
     ----------
     wavelength : float
         The wavelength in meters
     waist : float
         The waist radius in meters    
-        
+            
     Returns
     -------
     zR : float
         The rayleigh range in meters
+        
     """
-    
     zR = (np.pi*waist**2)/wavelength
+    
     return zR
 
 
@@ -410,11 +412,12 @@ def emitted_frequency(E1,E2):
 def boltzman_statistics(wl,K):
     """Calculate the ratio of ions in two energy states E1 and E2 in thermal 
     equilibrium given the energy difference defined by a photon of wavelength
-    wl.  """
+    wl.  
+    """
     
     energy = (const.h * const.c)/wl   #energy of a photon (joules) of 1.064um light
     ratio = np.exp(-1*energy/(const.k*K))
-    print 'The ratio of ions in energy level 2 compared to 1 is: ' + str(ratio)
+    print ('The ratio of ions in energy level 2 compared to 1 is: ' + str(ratio))
     
     return ratio
 
@@ -433,7 +436,7 @@ def planks_law(wl,T):
     Returns
     -------
     B : float
-        The spectral radiance of the body (amount of energy it gives offf as 
+        The spectral radiance of the body (amount of energy it gives off as 
         radiation of different frequencies). Units are Ws x sr-1 x m-3 (when
         using wavelength) 
     """
@@ -469,7 +472,7 @@ def escape_threshold(p):
 
 #Time of flight - for laser ranging applications    
 def TOF_to_distance(t):
-    """Convert time of flight to distance (in meters) for Lidar
+    """Convert time of flight (seconds) to distance (in meters) for Lidar
     """
     dist = const.c * t/2
     return dist   
@@ -477,6 +480,7 @@ def TOF_to_distance(t):
 
 if __name__ == '__main__':
     #do some test cases
+    print(TOF_to_distance(2))
     
     
 
