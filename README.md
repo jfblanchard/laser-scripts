@@ -1,6 +1,6 @@
 # laser-tools
 
-Utilities for performing common laser beam computations.
+Fucntions for performing common laser beam computations.
 
 This module has a several functions for generating and plotting 1D and 2D gaussian profiles, as well as other utilities which can be used for modeling and computing laser beam parameters.  Some of the functions include:
 
